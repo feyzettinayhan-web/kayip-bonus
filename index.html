@@ -1,131 +1,142 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kayıp Bonus Hesaplayıcı</title>
-
-  <meta name="theme-color" content="#0f0f0f">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Kayıp Bonus">
-
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="manifest.webmanifest">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kombine Kapatma</title>
+  <meta name="description" content="Kombine kapatma hesaplayıcı." />
   <style>
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      padding:20px;
-      font-family:Arial,Helvetica,sans-serif;
-      background:#0f0f0f;
-      color:#ffffff;
-      min-height:100vh;
-    }
-    .card{
-      max-width:500px;
-      margin:0 auto;
-      background:#181818;
-      border:1px solid #333;
-      border-radius:18px;
-      padding:22px;
-      box-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    h1{
-      margin:10px 0 26px;
-      text-align:center;
-      font-size:32px;
-      line-height:1.2;
-    }
-    label{
-      display:block;
-      margin-top:16px;
-      margin-bottom:8px;
-      font-weight:700;
-      font-size:18px;
-    }
-    input{
-      width:100%;
-      padding:15px;
-      font-size:24px;
-      border:1px solid #444;
-      border-radius:12px;
-      background:#242424;
-      color:#ffffff;
-      outline:none;
-    }
-    input:focus{border-color:#22c55e}
-    input::placeholder{color:#8f8f8f}
-    button{
-      width:100%;
-      margin-top:22px;
-      padding:16px;
-      font-size:24px;
-      font-weight:800;
-      background:#16a34a;
-      color:#ffffff;
-      border:0;
-      border-radius:12px;
-      cursor:pointer;
-    }
-    .result{
-      margin-top:22px;
-      padding:16px;
-      border-radius:14px;
-      border:2px solid #444;
-      background:#222;
-    }
-    .result.active{
-      background:#063f1f;
-      border-color:#22c55e;
-    }
-    .result-title{
-      font-size:18px;
-      font-weight:700;
-      color:#ffffff;
-    }
-    .big{
-      margin-top:8px;
-      min-height:58px;
-      font-size:50px;
-      font-weight:900;
-      color:#4ade80;
-      word-break:break-word;
-    }
+    :root{--bg:#050711;--card:#101827;--card2:#07101d;--text:#eef4ff;--muted:#96a6bd;--line:#263247;--accent:#38bdf8;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b;--radius:22px;--shadow:0 20px 60px rgba(0,0,0,.42)}
+    *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(circle at top,#13203a 0,#070a12 45%,#03050b 100%);color:var(--text);min-height:100vh}.wrap{max-width:1180px;margin:0 auto;padding:24px 14px 44px}.hero{padding:22px 4px 16px}.badge{display:inline-flex;gap:8px;align-items:center;color:#bff1ff;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.28);padding:8px 12px;border-radius:999px;font-size:13px}h1{font-size:clamp(27px,5vw,48px);line-height:1.05;margin:18px 0 10px}.lead{color:var(--muted);font-size:16px;line-height:1.55;max-width:900px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:linear-gradient(180deg,rgba(16,24,39,.97),rgba(7,16,29,.97));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.section-title{font-weight:900;font-size:18px;margin:0 0 12px}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;color:#cbd6e7;font-size:13px;margin:0 0 7px}.field{background:#07101f;border:1px solid #27344b;border-radius:15px;padding:11px 12px;color:var(--text);width:100%;font-size:16px;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(56,189,248,.12)}.toggle{display:grid;grid-template-columns:1fr 1fr;background:#07101f;border:1px solid var(--line);border-radius:16px;padding:4px;margin-bottom:14px}.toggle button{border:0;background:transparent;color:var(--muted);padding:12px;border-radius:12px;font-weight:900;cursor:pointer}.toggle button.active{background:linear-gradient(135deg,#0891b2,#22c55e);color:white}.check{display:flex;align-items:center;gap:10px;background:#07101f;border:1px solid var(--line);padding:12px;border-radius:16px;margin:12px 0}.check input{width:20px;height:20px}.btns{display:flex;gap:10px;margin-top:14px}.btn{border:0;border-radius:16px;padding:13px 16px;font-weight:950;cursor:pointer}.primary{background:linear-gradient(135deg,#38bdf8,#22c55e);color:#021018;flex:1}.ghost{background:#07101f;color:#dbeafe;border:1px solid var(--line)}.results{display:grid;gap:10px}.metric{display:flex;justify-content:space-between;gap:16px;background:rgba(7,16,31,.74);border:1px solid var(--line);padding:13px;border-radius:16px}.metric span{color:var(--muted)}.metric b{text-align:right}.big{padding:16px;border-radius:18px;background:linear-gradient(135deg,rgba(56,189,248,.14),rgba(34,197,94,.12));border:1px solid rgba(56,189,248,.32)}.money{font-size:32px;font-weight:950;margin-top:4px}.status{font-weight:900;padding:12px 14px;border-radius:16px;border:1px solid;margin-top:10px}.green{color:#bbf7d0;background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.35)}.yellow{color:#fde68a;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.35)}.red{color:#fecaca;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.35)}.note{font-size:13px;color:var(--muted);line-height:1.5}.steps{counter-reset:s;display:grid;gap:10px}.step{position:relative;padding:12px 12px 12px 44px;background:#07101f;border:1px solid var(--line);border-radius:16px;color:#dbeafe}.step:before{counter-increment:s;content:counter(s);position:absolute;left:12px;top:11px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#1f2937;color:#7dd3fc;font-weight:900;font-size:12px}.small{font-size:12px;color:#91a4bc}.footer{margin-top:16px;color:#7f8ea6;font-size:12px;text-align:center}.hide{display:none}@media(max-width:860px){.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.money{font-size:27px}}
   </style>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=2">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png?v=2">
+  <link rel="manifest" href="./manifest.webmanifest?v=2">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Kombine Kapatma">
+  <meta name="application-name" content="Kombine Kapatma">
+
 </head>
 <body>
-  <div class="card">
-    <h1>Kayıp Bonus Hesaplayıcı</h1>
+<main class="wrap">
+  <section class="hero">
+    <h1>Kombine Kapatma</h1>
+  </section>
 
-    <label for="bahis">Bahis Miktarı (€)</label>
-    <input id="bahis" type="number" inputmode="decimal" step="0.01" placeholder="Örn: 1000">
-
-    <label for="oran">Bonus Oranı (%)</label>
-    <input id="oran" type="number" inputmode="decimal" step="0.01" placeholder="Örn: 30">
-
-    <button type="button" onclick="hesapla()">Hesapla</button>
-
-    <div id="box" class="result">
-      <div class="result-title">Borsaya yatırılacak tutar (€)</div>
-      <div id="sonuc" class="big"></div>
+  <section class="grid">
+    <div class="card">
+      <h2 class="section-title">Hesaplama Bilgileri</h2>
+      <div class="toggle"><button id="cashBtn" class="active" type="button">Ana Para</button><button id="freeBtn" type="button">Freebet</button></div>
+      <div class="form">
+        <div><label>Bahis / Freebet Tutarı (€)</label><input id="stake" class="field" type="number" inputmode="decimal" value="10000" min="0" step="0.01"></div>
+        <div><label>1. Maç Site Oranı</label><input id="odds1" class="field" type="number" inputmode="decimal" value="1.50" min="1.01" step="0.01"></div>
+        <div><label>1. Maç Borsa Lay Oranı</label><input id="layOdds1" class="field" type="number" inputmode="decimal" value="1.55" min="1.01" step="0.01"></div>
+        <div><label>2. Maç Site Oranı</label><input id="odds2" class="field" type="number" inputmode="decimal" value="1.50" min="1.01" step="0.01"></div>
+        <div><label>2. Maç Borsa Lay Oranı</label><input id="layOdds2" class="field" type="number" inputmode="decimal" value="1.55" min="1.01" step="0.01"></div>
+      </div>
+      <label class="check"><input id="useFirstLay" type="checkbox" checked> 1. maçı da borsada lay ile karşıla</label>
+      <div class="btns"><button class="btn primary" onclick="calc()">Hesapla</button><button class="btn ghost" onclick="resetForm()">Sıfırla</button></div>
+      <p class="note">Not: Komisyon yok varsayılır. Oran kayması, maç iptali, limit ve kampanya kuralı risklerini ayrıca kontrol et.</p>
     </div>
-  </div>
 
-  <script>
-    function hesapla(){
-      var bahis = parseFloat(document.getElementById('bahis').value) || 0;
-      var oran = parseFloat(document.getElementById('oran').value) || 0;
+    <div class="card">
+      <h2 class="section-title">Sonuç</h2>
+      <div class="results">
+        <div class="big"><span class="small">Dengelenmiş tahmini net</span><div id="netBig" class="money">€0</div><div id="modeText" class="small">Ana para modu</div></div>
+        <div id="status" class="status yellow">Bilgileri girip hesapla.</div>
+        <div class="metric"><span>Kombine toplam oran</span><b id="combo">-</b></div>
+        <div class="metric"><span>1. maç lay tutarı</span><b id="layStake1">-</b></div>
+        <div class="metric"><span>1. maç liability</span><b id="liability1">-</b></div>
+        <div class="metric"><span>İlk maç kaybederse net</span><b id="firstLoseNet">-</b></div>
+        <div class="metric"><span>İlk maç kazanırsa aktif kupon değeri</span><b id="activeValue">-</b></div>
+        <div class="metric"><span>Final site ödeme/kazanç</span><b id="siteReturn">-</b></div>
+        <div class="metric"><span>2. maç lay tutarı</span><b id="layStake2">-</b></div>
+        <div class="metric"><span>2. maç liability</span><b id="liability2">-</b></div>
+        <div class="metric"><span>2. maç yatarsa net</span><b id="secondLoseNet">-</b></div>
+        <div class="metric"><span>2. maç kazanırsa net</span><b id="secondWinNet">-</b></div>
+      </div>
+    </div>
+  </section>
 
-      var bonus = (bahis * oran) / 100;
-      var yariBonus = bonus / 2;
-      var yatirilacak = bahis - yariBonus;
-
-      document.getElementById('sonuc').innerHTML = yatirilacak.toFixed(2) + ' €';
-      document.getElementById('box').classList.add('active');
-    }
-  </script>
+  <section class="card" style="margin-top:16px">
+    <h2 class="section-title">Doğru Kullanım Sırası</h2>
+    <div class="steps">
+      <div class="step">Siteye 2'li kombineyi gir. İki maçın da kampanya şartını karşıladığından emin ol.</div>
+      <div class="step">Daha güvenli kullanımda 1. maç için araçtaki lay tutarını borsada al.</div>
+      <div class="step">1. maç kaybederse kupon biter; araç sana o senaryodaki net sonucu gösterir.</div>
+      <div class="step">1. maç kazanırsa aktif kupon değeri oluşur. Sonra 2. maç için gösterilen lay tutarını borsada al.</div>
+      <div class="step">Ana parada hedef genelde çevrimi az kayıpla kapatmak; freebet'te hedef yüksek nakit değeri almaktır.</div>
+    </div>
+  </section>
+  <div class="footer">Bu araç yalnızca hesaplama içindir; bahis tavsiyesi değildir.</div>
+</main>
+<script>
+let mode='cash';
+const $=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('tr-TR',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(isFinite(n)?n:0);
+const val=id=>parseFloat(String($(id).value).replace(',','.'))||0;
+function setMode(m){mode=m;$('cashBtn').classList.toggle('active',m==='cash');$('freeBtn').classList.toggle('active',m==='free');calc();}
+$('cashBtn').onclick=()=>setMode('cash');$('freeBtn').onclick=()=>setMode('free');
+['stake','odds1','layOdds1','odds2','layOdds2','useFirstLay'].forEach(id=>$(id).addEventListener('input',calc));
+$('useFirstLay').addEventListener('change',calc);
+function resetForm(){stake.value=10000;odds1.value=1.50;layOdds1.value=1.55;odds2.value=1.50;layOdds2.value=1.55;useFirstLay.checked=true;setMode('cash');}
+function statusBox(cls,msg){const el=$('status');el.className='status '+cls;el.textContent=msg;}
+function calc(){
+  const s=val('stake'), o1=val('odds1'), lo1=val('layOdds1'), o2=val('odds2'), lo2=val('layOdds2'), use1=$('useFirstLay').checked;
+  if(s<=0||o1<=1||o2<=1||lo2<=1||(use1&&lo1<=1)){statusBox('red','Eksik veya hatalı oran/tutar var.');return;}
+  const combo=o1*o2;
+  const active=s*o1;
+  let finalSite, lay2, liab2;
+  if(mode==='cash'){
+    finalSite=s*combo;
+    lay2=finalSite/lo2;
+    liab2=lay2*(lo2-1);
+    $('modeText').textContent='Ana para: yatırılan tutar maliyet olarak düşülür.';
+  }else{
+    finalSite=s*(combo-1); // freebet stake geri dönmez
+    lay2=finalSite/lo2;
+    liab2=lay2*(lo2-1);
+    $('modeText').textContent='Freebet: stake geri dönmez, sadece net kazanç hesaplanır.';
+  }
+  let lay1=0, liab1=0, firstLoseNet, secondLoseNet, secondWinNet;
+  if(use1){
+    // 1. maç lay tutarı, ilk maç kaybederse oluşan sonucu
+    // ilk maç kazanıp 2. maç hedge edildiğinde oluşan sonuçla dengeler.
+    // Hem ana para hem freebet için doğru denklem: lay1 * layOrani1 = lay2
+    lay1 = lay2 / lo1;
+    liab1 = lay1*(lo1-1);
+    firstLoseNet = (mode==='cash') ? (lay1 - s) : lay1;
+    secondLoseNet = (mode==='cash') ? (lay2 - s - liab1) : (lay2 - liab1);
+    secondWinNet = (mode==='cash') ? (finalSite - s - liab1 - liab2) : (finalSite - liab1 - liab2);
+  }else{
+    firstLoseNet = (mode==='cash') ? -s : 0;
+    secondLoseNet = (mode==='cash') ? (lay2 - s) : lay2;
+    secondWinNet = (mode==='cash') ? (finalSite - s - liab2) : (finalSite - liab2);
+  }
+  const netAvg = Math.min(firstLoseNet, secondLoseNet, secondWinNet);
+  $('combo').textContent=combo.toFixed(2);
+  $('layStake1').textContent=use1?fmt(lay1):'Kapalı';
+  $('liability1').textContent=use1?fmt(liab1):'Kapalı';
+  $('firstLoseNet').textContent=fmt(firstLoseNet);
+  $('activeValue').textContent=fmt(active);
+  $('siteReturn').textContent=fmt(finalSite);
+  $('layStake2').textContent=fmt(lay2);
+  $('liability2').textContent=fmt(liab2);
+  $('secondLoseNet').textContent=fmt(secondLoseNet);
+  $('secondWinNet').textContent=fmt(secondWinNet);
+  $('netBig').textContent=fmt(netAvg);
+  let cls='green', msg='Yeşil: Senaryolar dengeli görünüyor.';
+  if(!use1){cls='yellow';msg='Sarı: 1. maç lay kapalı. İlk maç yatarsa koruma yok.';}
+  else if(firstLoseNet<0||secondLoseNet<0||secondWinNet<0){cls='red';msg='Kırmızı: En az bir senaryoda zarar var. Oranları iyileştir.';}
+  else if(mode==='cash' && Math.abs(netAvg)<s*0.03){cls='yellow';msg='Sarı: Ana para çevrimi düşük farkla kapanıyor.';}
+  else if(mode==='free' && netAvg<s*0.35){cls='yellow';msg='Sarı: Freebet nakit değeri düşük kalıyor, daha iyi oran ara.';}
+  statusBox(cls,msg);
+}
+calc();
+</script>
 </body>
 </html>
